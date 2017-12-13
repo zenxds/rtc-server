@@ -1,0 +1,21 @@
+{
+  "name": "rtc-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "zenxds",
+  "license": "MIT",
+  "scripts": {
+    "start": "DEBUG=rtc-server NODE_ENV=dev nodemon index.js",
+    "start:docker": "pm2-docker ecosystem.config.js --env production"
+  },
+  "dependencies": {
+    "config": "^1.28.1",
+    "debug": "^3.1.0",
+    "koa": "^2.4.1",
+    "pm2": "^2.8.0",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.5"
+  }
+}
