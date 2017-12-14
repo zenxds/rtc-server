@@ -4,7 +4,7 @@ const connections = {}
 
 module.exports = function(io) {
   io
-  .of('rtc')
+  // .of('rtc')
   .on('connection', function(socket) {
     debug('a user connected')
 
