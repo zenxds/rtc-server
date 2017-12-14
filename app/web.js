@@ -1,3 +1,4 @@
+const path = require('path')
 const config = require('config')
 const Koa = require('koa')
 const koaStatic = require('koa-static')
