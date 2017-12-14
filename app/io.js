@@ -1,6 +1,6 @@
 const debug = require('debug')('rtc-server')
 
-const connections = {}
+// const connections = {}
 
 module.exports = function(io) {
   io
@@ -9,9 +9,9 @@ module.exports = function(io) {
     debug('a user connected')
 
     const id = socket.id
-    connections[id] = {
-      socket
-    }
+    // connections[id] = {
+    //   socket
+    // }
 
     // tell client it's socket id
     socket.emit('id', id)
@@ -19,36 +19,21 @@ module.exports = function(io) {
     socket.broadcast.emit('userAdd', id)
     
     socket.on('offer', function({ id: targetId, offer }) {
-      const target = connections[targetId]
-      if (!target) {
-        return
-      }
-
-      target.socket.emit('offer', {
+      socket.broadcast.to(targetId).emit('offer', {
         id,
         offer
       })
     })
 
     socket.on('candidate', function({ id: targetId, candidate }) {
-      const target = connections[targetId]
-      if (!target) {
-        return
-      }
-
-      target.socket.emit('candidate', {
+      socket.broadcast.to(targetId).emit('candidate', {
         id,
         candidate
       })
     })
 
     socket.on('answer', function({ id: targetId, answer }) {
-      const target = connections[targetId]
-      if (!target) {
-        return
-      }
-
-      target.socket.emit('answer', {
+      socket.broadcast.to(targetId).emit('answer', {
         id,
         answer
       })
@@ -62,7 +47,7 @@ module.exports = function(io) {
       debug('a user disconnected')
 
       socket.broadcast.emit('userRemove', id)
-      delete connections[id]
+      // delete connections[id]
     })
   })
 }
