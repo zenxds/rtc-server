@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "DEBUG=rtc-server NODE_ENV=dev nodemon index.js",
+    "start:pm2": "pm2 ecosystem.config.js --env production",
     "start:docker": "pm2-docker ecosystem.config.js --env production"
   },
   "dependencies": {
