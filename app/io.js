@@ -13,8 +13,6 @@ module.exports = function(io) {
     //   socket
     // }
 
-    // tell client it's socket id
-    socket.emit('id', id)
     // tell other clients a user add
     socket.broadcast.emit('userAdd', id)
     
